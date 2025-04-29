@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Movies{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies List</title>
+</head>
+<body>
+    <h1>Movies List</h1>
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Release Year</th>
+            <th>Duration (minutes)</th>
+            <th>Actions</th>
+        </tr>
+        {% for movie in movies %}
+        <tr>
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.genre }}</td>
+            <td>{{ movie.release_year }}</td>
+            <td>{{ movie.duration }}</td>
+            <td>
+                <a href="{{ url_for('delete', media_type='movie', media_id=movie.id) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endblock %}
+</body>
+</html>

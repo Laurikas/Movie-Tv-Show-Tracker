@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="movie-details">
+    <!-- Movie Title -->
+    <h1 class="movie-title">{{ title }}</h1>
+
+    <!-- Movie Info Section -->
+    <div class="movie-info-container">
+        <div class="movie-info-container">
+            <div class="movie-poster">
+                {% if poster_url %}
+                <img src="{{ poster_url }}" alt="{{ title }} poster">
+                {% else %}
+                <img src="https://davidkoepp.com/wp-content/themes/blankslate/images/Movie%20Placeholder.jpg" alt="No poster available">
+                {% endif %}
+            </div>
+            <div class="movie-text-info">
+                <p><strong>Release Date:</strong> {{ release_date }}</p>
+                <p><strong>Genres:</strong> {{ genres }}</p>
+                <p><strong>Runtime:</strong> {{ runtime }} minutes</p>
+                <p><strong>Rating:</strong> {{ vote_average | round(1)  }} / 10</p>
+                <p><strong>Overview:</strong> {{ overview }}</p>
+                <p><strong>Production Companies:</strong> {{ production_companies }}</p>
+                <form action="{{ url_for('add_to_watched', media_type='movie', media_id=movie_id) }}" method="POST">
+                    <button type="submit" class="btn-add-watched">Add to Watched List</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cast Section -->
+    {% if cast %}
+    <div class="movie-cast-container">
+        <h3>Cast:</h3>
+        <div class="movie-cast">
+            {% for actor in cast[:5] %}
+            <div class="actor">
+                <a href="{{ url_for('actor_details', actor_id=actor.id) }}">
+                    {% if actor.profile_url %}
+                    <img class="actor-photo" src="{{ actor.profile_url }}" alt="{{ actor.name }}">
+                    {% else %}
+                    <img src="https://i.pinimg.com/736x/58/51/2e/58512eb4e598b5ea4e2414e3c115bef9.jpg" alt="{{ actor.name }}" class="actor-photo">
+                    {% endif %}
+                    <p>{{ actor.name }}</p>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{{ url_for('full_cast', movie_id=movie_id) }}" class="btn-view-cast">View Full Cast</a>
+    </div>
+    {% endif %}
+
+    <!-- Similar Movies Section -->
+    {% if similar_movies %}
+    <div class="similar-movies-container">
+        <h3>Similar Movies:</h3>
+        <div class="similar-movies">
+            {% for movie in similar_movies %}
+            <div class="similar-movie">
+                <a href="{{ url_for('movie_details', movie_id=movie.id) }}">
+                    {% if movie.poster %}
+                    <img src="https://image.tmdb.org/t/p/w500{{ movie.poster }}" alt="{{ movie.title }}">
+                    {% else %}
+                    <img src="https://davidkoepp.com/wp-content/themes/blankslate/images/Movie%20Placeholder.jpg" alt="{{ movie.title }}">
+                    {% endif %}
+                    <p>{{ movie.title }}</p>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

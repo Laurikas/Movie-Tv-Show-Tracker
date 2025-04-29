@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<h1>Search Results</h1>
+
+{% if results %}
+<div class="media-list">
+    {% for item in results %}
+    <div class="media-item">
+        <a href="{% if search_type == 'movie' %}
+                    {{ url_for('movie_details', movie_id=item.id) }}
+                 {% else %}
+                    {{ url_for('tvshow_details', tvshow_id=item.id) }}
+                 {% endif %}">
+            {% if item.poster_path %}
+            <img src="https://image.tmdb.org/t/p/w500{{ item.poster_path }}" alt="{{ item.title if search_type == 'movie' else item.name }} poster">
+            {% else %}
+            <img class="default-poster" src="https://davidkoepp.com/wp-content/themes/blankslate/images/Movie%20Placeholder.jpg" alt="No poster available">
+            {% endif %}
+            <h3>{{ item.title if search_type == 'movie' else item.name }}</h3>
+            <p>{{ item.release_date if search_type == 'movie' else item.first_air_date }}</p>
+        </a>
+        <form action="{{ url_for('add_to_watched', media_type=search_type, media_id=item.id) }}" method="POST">
+            <input type="hidden" name="search_query" value="{{ search_query }}">
+            <input type="hidden" name="search_type" value="{{ search_type }}">
+            <button type="submit" class="btn-add-watched">Add to Watched List</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>{{ message }}</p>
+{% endif %}
+{% endblock %}

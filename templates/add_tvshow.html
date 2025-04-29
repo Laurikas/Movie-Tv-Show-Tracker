@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Tv Show{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add TV Show</title>
+</head>
+<body>
+    <h1>Add a TV Show</h1>
+    <form method="POST">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" name="genre" required><br><br>
+
+        <label for="release_year">Release Year:</label>
+        <input type="number" id="release_year" name="release_year" required><br><br>
+
+        <label for="seasons">Seasons:</label>
+        <input type="number" id="seasons" name="seasons" required><br><br>
+
+        <label for="episodes_per_season">Episodes per Season:</label>
+        <input type="number" id="episodes_per_season" name="episodes_per_season" required><br><br>
+
+        <button type="submit">Add TV Show</button>
+    </form>
+    {% endblock %}
+</body>
+</html>

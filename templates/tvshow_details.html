@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="tvshow-details">
+    <!-- TV Show Title -->
+    <h1 class="tvshow-title">{{ title }}</h1>
+
+    <!-- TV Show Info Section -->
+    <div class="tvshow-info-container">
+        <div class="tvshow-poster">
+            {% if poster_url %}
+            <img src="{{ poster_url }}" alt="{{ title }} poster">
+            {% endif %}
+        </div>
+        <div class="tvshow-text-info">
+            <p><strong>Overview:</strong> {{ overview }}</p>
+            <p><strong>First Air Date:</strong> {{ first_air_date }}</p>
+            <p><strong>Seasons:</strong> {{ number_of_seasons }}</p>
+            <p><strong>Episodes:</strong> {{ number_of_episodes }}</p>
+            <p><strong>Genres:</strong> {{ genres }}</p>
+            <p><strong>Rating:</strong> {{ vote_average | round(1)  }} / 10 </p>
+            <form action="{{ url_for('add_to_watched', media_type='tvshow', media_id=tvshow_id) }}" method="POST">
+                <button type="submit" class="btn-add-watched">Add to Watched List</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cast Section -->
+    {% if cast %}
+    <div class="tvshow-cast-container">
+        <h3>Cast:</h3>
+        <div class="tvshow-cast">
+            {% for actor in cast %}
+            <div class="actor">
+                <a href="{{ url_for('actor_details', actor_id=actor.id) }}">
+                    {% if actor.profile_url %}
+                    <img class="actor-photo" src="{{ actor.profile_url }}" alt="{{ actor.name }}">
+                    {% else %}
+                    <img class="actor-photo" src="https://i.pinimg.com/736x/58/51/2e/58512eb4e598b5ea4e2414e3c115bef9.jpg" alt="{{ actor.name }}">
+                    {% endif %}
+                    <p>{{ actor.name }}</p>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{{ url_for('full_tvshow_cast', tvshow_id=tvshow_id) }}" class="btn-view-cast">View Full Cast</a>
+    </div>
+    {% endif %}
+
+    <!-- Similar Shows Section -->
+    {% if similar_shows %}
+    <div class="similar-tvshows-container">
+        <h3>Similar Shows:</h3>
+        <div class="similar-tvshows">
+            {% for show in similar_shows %}
+            <div class="similar-show">
+                <a href="{{ url_for('tvshow_details', tvshow_id=show.id) }}">
+                    {% if show.poster %}
+                    <img src="https://image.tmdb.org/t/p/w500{{ show.poster }}" alt="{{ show.title }}">
+                    {% else %}
+                    <img class="default-poster" src="https://davidkoepp.com/wp-content/themes/blankslate/images/Movie%20Placeholder.jpg" alt="No poster available">
+                    {% endif %}
+                    <p>{{ show.title }}</p>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

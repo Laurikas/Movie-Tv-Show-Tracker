@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Movie & TV Tracker{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+
+            nav a {
+                color: white;
+                margin-right: 15px;
+                text-decoration: none;
+            }
+
+                nav a:hover {
+                    text-decoration: underline;
+                }
+
+        .container {
+            padding: 20px;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+        <div>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('movies') }}">View Movies</a>
+            <a href="{{ url_for('add_movie') }}">Add Movie</a>
+            <a href="{{ url_for('tvshows') }}">View TV Shows</a>
+            <a href="{{ url_for('add_tvshow') }}">Add TV Show</a>
+            <a href="{{ url_for('discover') }}">Discover</a>
+        </div>
+        <form action="{{ url_for('search') }}" method="POST">
+            <input type="text" name="search_query" placeholder="Search for movies or TV shows" value="{{ search_query }}" required>
+            <select name="search_type">
+                <option value="movie" {% if search_type == 'movie' %}selected{% endif %}>Movies</option>
+                <option value="tvshow" {% if search_type == 'tvshow' %}selected{% endif %}>TV Shows</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>

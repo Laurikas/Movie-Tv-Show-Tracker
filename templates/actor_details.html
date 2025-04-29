@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Actor Details{% endblock %}
+
+{% block content %}
+<div class="actor-details">
+    <div class="actor-profile">
+        <h2>{{ name }}</h2>
+        <img src="{{ profile_url if profile_url else 'https://i.pinimg.com/736x/58/51/2e/58512eb4e598b5ea4e2414e3c115bef9.jpg' }}" alt="Profile picture of {{ name }}" class="actor-profile-img">
+        <p><strong>Born:</strong> {{ birthday }} in {{ place_of_birth }}</p>
+        <h4>Biography:</h4>
+        <p>{{ biography }}</p>
+    </div>
+
+    <div class="actor-movies">
+        <h3>Movies and TV Shows</h3>
+        <div class="actor-movie-list">
+            {% for movie in movie_credits %}
+            <div class="actor-movie">
+                <a href="{{ url_for('movie_details', movie_id=movie.id) }}">
+                    <img src="{{ movie.poster_url if movie.poster_url else 'https://davidkoepp.com/wp-content/themes/blankslate/images/Movie%20Placeholder.jpg' }}" alt="{{ movie.title }}">
+                </a>
+                <a href="{{ url_for('movie_details', movie_id=movie.id) }}">
+                    <p>{{ movie.title }}</p>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

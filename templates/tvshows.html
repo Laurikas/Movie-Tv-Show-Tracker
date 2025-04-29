@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Tv Shows{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TV Shows</title>
+</head>
+<body>
+    <h1>TV Shows List</h1>
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Release Year</th>
+            <th>Seasons</th>
+            <th>Episodes/Season</th>
+            <th>Actions</th>
+        </tr>
+        {% for show in shows %}
+        <tr>
+            <td>{{ show.title }}</td>
+            <td>{{ show.genre }}</td>
+            <td>{{ show.release_year }}</td>
+            <td>{{ show.seasons }}</td>
+            <td>{{ show.episodes_per_season }}</td>
+            <td>
+                <a href="{{ url_for('delete', media_type='tvshow', media_id=show.id) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endblock %}
+</body>
+</html>

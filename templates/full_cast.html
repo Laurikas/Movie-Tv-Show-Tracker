@@ -1,0 +1,22 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}Full Cast{% endblock %}
+
+{% block content %}
+<h1>Full Cast</h1>
+<div class="cast-grid">
+    {% for actor in cast %}
+    <div class="cast-member">
+        <a href="{{ url_for('actor_details', actor_id=actor.id) }}">
+            {% if actor.profile_path %}
+            <img src="https://image.tmdb.org/t/p/w500{{ actor.profile_path }}" alt="{{ actor.name }}">
+            {% else %}
+            <img src="https://i.pinimg.com/736x/58/51/2e/58512eb4e598b5ea4e2414e3c115bef9.jpg" alt="{{ actor.name }}">
+            {% endif %}
+            <p>{{ actor.name }}</p>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+<a href="{% if is_tvshow %}{{ url_for('tvshow_details', tvshow_id=tvshow_id) }}{% else %}{{ url_for('movie_details', movie_id=movie_id) }}{% endif %}" class="back-button">Back to Details</a>
+{% endblock %}
