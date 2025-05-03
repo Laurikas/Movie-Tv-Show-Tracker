@@ -1,12 +1,11 @@
-/* Remove default blue color for links */
 a {
-    color: inherit; /* This makes the link inherit the color from its parent element */
-    text-decoration: none; /* Optional: Removes the underline from links */
+    color: inherit;
+    text-decoration: none;
 }
 
     a:hover {
-        color: #555; /* Change this to your preferred hover color */
-        text-decoration: underline; /* Optional: Adds an underline on hover */
+        color: #555; 
+        text-decoration: underline;
     }
 
 .movie-list {
@@ -22,8 +21,8 @@ a {
 
     .movie-item img {
         width: 100%;
-        height: 300px; /* Fixed height */
-        object-fit: cover; /* Ensures images cover the area while maintaining aspect ratio */
+        height: 300px; 
+        object-fit: cover; 
         border-radius: 8px;
         transition: filter 0.3s ease-in-out;
     }
@@ -37,7 +36,7 @@ a {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    min-height: 100vh; /* Ensures the content takes up the full viewport height */
+    min-height: 100vh; 
     box-sizing: border-box;
 }
 
@@ -343,9 +342,7 @@ a {
     color: #666;
     margin-top: 50px;
 }
-/* Movie Details Page */
 
-/* Center the entire Movie Details Page */
 .movie-details {
     display: flex;
     flex-direction: column;
@@ -357,7 +354,6 @@ a {
     box-sizing: border-box;
 }
 
-/* Movie Title */
 .movie-title {
     font-size: 32px;
     font-weight: bold;
@@ -366,7 +362,6 @@ a {
     text-align: center;
 }
 
-/* Movie Info Section */
 .movie-info-container {
     display: flex;
     align-items: flex-start;
@@ -400,7 +395,7 @@ a {
         color: #555;
     }
 
-/* Trending Section */
+
 .trending-section {
     display: flex;
     gap: 20px;
@@ -458,16 +453,16 @@ a {
         margin-bottom: 10px;
     }
 
-.media-item h3 {
-    font-size: 1rem; /* Adjust font size if needed */
-    white-space: nowrap; /* Prevent text from wrapping */
-    overflow: hidden; /* Hide overflowing text */
-    text-overflow: ellipsis; /* Add ellipsis for truncated text */
-    max-width: 100%; /* Ensure it respects the container width */
-    display: block; /* Ensure proper block-level behavior */
-}
+    .media-item h3 {
+        font-size: 1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        display: block;
+    }
 
-.pagination-buttons {
+.pagination-buttons{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -475,8 +470,7 @@ a {
 }
 
     .pagination-buttons button {
-        font-size: 1.5rem; /* Make the text larger */
-        padding: 1px 5xpx; /* Add padding for a larger button */
-        margin: 0 10px; /* Add spacing between buttons */
+        font-size: 1.5rem;
+        padding: 1px 5xpx;
+        margin: 0 10px;
     }
-

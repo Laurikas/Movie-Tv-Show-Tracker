@@ -4,10 +4,8 @@
 
 {% block content %}
 <div class="tvshow-details">
-    <!-- TV Show Title -->
     <h1 class="tvshow-title">{{ title }}</h1>
 
-    <!-- TV Show Info Section -->
     <div class="tvshow-info-container">
         <div class="tvshow-poster">
             {% if poster_url %}
@@ -27,7 +25,6 @@
         </div>
     </div>
 
-    <!-- Cast Section -->
     {% if cast %}
     <div class="tvshow-cast-container">
         <h3>Cast:</h3>
@@ -49,7 +46,6 @@
     </div>
     {% endif %}
 
-    <!-- Similar Shows Section -->
     {% if similar_shows %}
     <div class="similar-tvshows-container">
         <h3>Similar Shows:</h3>

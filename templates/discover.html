@@ -5,14 +5,12 @@
     <h1>Discover</h1>
 </header>
 
-<!-- Buttons for Navigation -->
 <div class="button-group text-center mb-4">
     <button class="btn btn-success" onclick="location.href='{{ url_for('top_rated_movies') }}'">Top Rated Movies</button>
     <button class="btn btn-info" onclick="location.href='{{ url_for('top_rated_tvshows') }}'">Top Rated TV Shows</button>
     <button class="btn btn-info" onclick="location.href='{{ url_for('discover') }}'">This Week's Trending</button>
 </div>
 
-<!-- Pagination Buttons at the Top -->
 <div class="pagination-buttons text-center mb-4">
     <form method="GET" action="{{ url_for('discover') }}" style="display: inline;">
         <input type="hidden" name="page" value="{{ current_page - 1 }}">
@@ -51,7 +49,6 @@
     </div>
 </section>
 
-<!-- Pagination Buttons at the Bottom -->
 <div class="pagination-buttons text-center mt-4">
     <form method="GET" action="{{ url_for('discover') }}" style="display: inline;">
         <input type="hidden" name="page" value="{{ current_page - 1 }}">

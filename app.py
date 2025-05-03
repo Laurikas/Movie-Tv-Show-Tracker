@@ -186,15 +186,12 @@ def add_to_watched(media_type, media_id):
 # ---------Discover Movies and TV Shows---------
 @app.route('/discover')
 def discover():
-    # Get the page number from the query parameters (default to 1)
     page = request.args.get('page', 1, type=int)
 
-    # Fetch this week's trending movies
     trending_movies_url = tmdb_url("/trending/movie/week", page=page)
     trending_movies_response = requests.get(trending_movies_url)
     trending_movies = trending_movies_response.json().get('results', [])
 
-    # Fetch this week's trending TV shows
     trending_tvshows_url = tmdb_url("/trending/tv/week", page=page)
     trending_tvshows_response = requests.get(trending_tvshows_url)
     trending_tvshows = trending_tvshows_response.json().get('results', [])
@@ -209,10 +206,8 @@ def discover():
 
 @app.route('/top_rated_movies')
 def top_rated_movies():
-    # Get the page number from the query parameters (default to 1)
     page = request.args.get('page', 1, type=int)
 
-    # Fetch top-rated movies
     top_rated_movies_url = tmdb_url("/movie/top_rated", page=page)
     response = requests.get(top_rated_movies_url)
     movies = response.json().get('results', [])
@@ -225,10 +220,8 @@ def top_rated_movies():
 
 @app.route('/top_rated_tvshows')
 def top_rated_tvshows():
-    # Get the page number from the query parameters (default to 1)
     page = request.args.get('page', 1, type=int)
 
-    # Fetch top-rated TV shows
     top_rated_tvshows_url = tmdb_url("/tv/top_rated", page=page)
     response = requests.get(top_rated_tvshows_url)
     tvshows = response.json().get('results', [])

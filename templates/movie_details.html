@@ -4,10 +4,8 @@
 
 {% block content %}
 <div class="movie-details">
-    <!-- Movie Title -->
     <h1 class="movie-title">{{ title }}</h1>
 
-    <!-- Movie Info Section -->
     <div class="movie-info-container">
         <div class="movie-info-container">
             <div class="movie-poster">
@@ -31,7 +29,6 @@
         </div>
     </div>
 
-    <!-- Cast Section -->
     {% if cast %}
     <div class="movie-cast-container">
         <h3>Cast:</h3>
@@ -53,7 +50,6 @@
     </div>
     {% endif %}
 
-    <!-- Similar Movies Section -->
     {% if similar_movies %}
     <div class="similar-movies-container">
         <h3>Similar Movies:</h3>
